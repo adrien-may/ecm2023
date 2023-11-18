@@ -1,15 +1,15 @@
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return '<h1>ECM Bonjour</h1>'
+from flask import Flask, render_template
 
 
-@app.route('/user/<name>')
-def user(name):
-    return f'<h1>Hello, {name}</h1>'
+def create_app():
+    app = Flask(__name__)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    @app.route('/')
+    def index():
+        return '<h1>ECM Bonjour</h1>'
+
+    @app.route('/user/<name>')
+    def user(name):
+        return render_template('user.html', name=name)
+
+    return app

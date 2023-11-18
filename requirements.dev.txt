@@ -13,3 +13,4 @@ black
 pytest-watch
 mypy
 pytest-mypy
+pytest-flask
