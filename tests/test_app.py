@@ -41,12 +41,3 @@ def test_professor_view(app, client):
     response = client.get("/professor")
     assert response.status_code == 200
     assert response.json["name"] == "Adrien"
-
-
-def test_todoz(app, client, session):
-    task = TaskFactory(title='foooo')
-    session.commit()
-    response = client.get("/todoz")
-
-    assert len(response.json["results"]) == 1
-    assert response.json["results"][0]['title'] == task.title

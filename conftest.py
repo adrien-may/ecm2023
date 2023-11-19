@@ -62,7 +62,6 @@ def session(db, request):
     db.session = common.Session
 
     def teardown():
-        transaction.rollback()
         connection.close()
         common.Session.remove()
 
