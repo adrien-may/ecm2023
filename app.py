@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask, render_template
+from flask_cors import CORS
 
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
@@ -26,6 +27,7 @@ def create_app():
     from tasks.serializers import TaskSchema
 
     app = Flask(__name__)
+    CORS(app)
 
     @app.route('/')
     def index():
