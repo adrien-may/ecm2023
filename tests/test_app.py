@@ -1,9 +1,12 @@
 from flask import Flask
 
+from tasks.tests.factories import TaskFactory
 
+from tasks.models import Task
 def test_app(app):
     assert app is not None
     assert isinstance(app, Flask)
+
 
 def test_index_route(client):
     response = client.get("/")
@@ -38,3 +41,12 @@ def test_professor_view(app, client):
     response = client.get("/professor")
     assert response.status_code == 200
     assert response.json["name"] == "Adrien"
+
+
+def test_todoz(app, client, session):
+    task = TaskFactory(title='foooo')
+    session.commit()
+    response = client.get("/todoz")
+
+    assert len(response.json["results"]) == 1
+    assert response.json["results"][0]['title'] == task.title
