@@ -36,6 +36,19 @@ def create_app():
             "friends": ["Amadou", "Mariam"]
         }
 
+    @app.route('/todoz')
+    def my_api_route():
+        tasks = Task.query.all()
+        return {
+            "results": [
+                {
+                    field: getattr(task, field)
+                    for field in Task.__table__.columns.keys()
+                }
+                for task in tasks
+            ]
+        }
+
     app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(basedir, 'data.sqlite')}"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
