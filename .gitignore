@@ -128,3 +128,6 @@ dmypy.json
 
 # my virtualenv
 ecm23
+
+# db
+data.sqlite

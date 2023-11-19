@@ -14,3 +14,4 @@ pytest-watch
 mypy
 pytest-mypy
 pytest-flask
+pytest-flask-sqlalchemy
